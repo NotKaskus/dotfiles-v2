@@ -44,7 +44,7 @@ else
 fi
 
 # Check if homebrew is installed
-if ! command_exists brew || [ ! -d "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+if ! command_exists brew || [ ! -d "/home/linuxbrew/.linuxbrew/bin" ]; then
 	echo -en "🍺 ${BLUE}Installing Homebrew...${RESET}\n"
 	brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
 	/bin/bash -c "$(curl -fsSL $brew_url)"
