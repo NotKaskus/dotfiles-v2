@@ -128,30 +128,28 @@ function pre_setup_tasks () {
 
   # If any core_deps are not installed, run pre-install script
   for dep in "${core_deps[@]}"; do
-    if ! command_exists $dep; then
+    if ! command_exists $dep && [ $dep != 'brew' ]; then
       echo -e "${YELLOW_B}Core dependency ${dep} not found. Running pre-install script...${RESET}"
-      if [ $dep == 'brew' ] && [ ! -d "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-        echo -e "${RED}Homebrew not found. Installing Homebrew...${RESET}"
-        brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
-        /bin/bash -c "$(curl -fsSL $brew_url)"
-        
-        # Add Path
-        export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
-        export PATH="$PATH:$BREW_HOME"
-
-        if [ -f "$HOME/.bashrc" ]; then
-          (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.bashrc"
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        fi
-
-        if [ -f "$HOME/.zshrc" ]; then
-          (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.zshrc"
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        fi
-      fi
-      # Run pre-install script for other dependencies
       bash <(curl -s https://raw.githubusercontent.com/NotKaskus/dotfiles-v2/main/scripts/installation/pre-install.sh)
       break
+    elif [ $dep == 'brew' ] && [ ! -d "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+      echo -e "${RED}Homebrew not found. Installing Homebrew...${RESET}"
+      brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
+      /bin/bash -c "$(curl -fsSL $brew_url)"
+      
+      # Add Path
+      export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
+      export PATH="$PATH:$BREW_HOME"
+
+      if [ -f "$HOME/.bashrc" ]; then
+        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.bashrc"
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      fi
+
+      if [ -f "$HOME/.zshrc" ]; then
+        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.zshrc"
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      fi
     fi
   done
 
