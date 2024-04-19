@@ -59,6 +59,9 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+. ~/.bashrc
+. ~/.zshrc
+
 # Check if git is installed
 if ! command_exists git; then
 	echo "${BLUE}Installing git...${RESET}"
