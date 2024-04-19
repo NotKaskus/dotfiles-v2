@@ -272,7 +272,7 @@ function install_packages () {
 
     # Debian / Ubuntu
 		# Install packages using apt
-    debian_pkg_install_script="${DOTFILES_DIR}/scripts/installs/debian-apt.sh"
+    debian_pkg_install_script="${DOTFILES_DIR}/scripts/installation/debian-apt.sh"
     chmod +x $debian_pkg_install_script
     $debian_pkg_install_script $PARAMS
 	else
