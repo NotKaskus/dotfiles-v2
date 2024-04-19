@@ -35,6 +35,14 @@ else
 	echo "${GREEN}oh-my-zsh already installed, skipping...${RESET}"
 fi
 
+# Check if git is installed
+if ! command_exists git; then
+	echo "${BLUE}Installing git...${RESET}"
+	sudo apt install git -y
+else
+	echo "${GREEN}Git already installed, skipping...${RESET}"
+fi
+
 # Check if homebrew is installed
 if ! command_exists brew; then
 	echo -en "🍺 ${BLUE}Installing Homebrew...${RESET}\n"
@@ -60,14 +68,4 @@ if ! command_exists brew; then
 else
 	echo "${GREEN}Homebrew already installed, loading environment...${RESET}"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
-brew --version
-
-# Check if git is installed
-if ! command_exists git; then
-	echo "${BLUE}Installing git...${RESET}"
-	sudo apt install git -y
-else
-	echo "${GREEN}Git already installed, skipping...${RESET}"
 fi
