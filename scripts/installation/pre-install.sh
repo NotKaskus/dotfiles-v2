@@ -48,13 +48,10 @@ if ! command_exists brew; then
 	echo -en "🍺 ${BLUE}Installing Homebrew...${RESET}\n"
 	brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
 	/bin/bash -c "$(curl -fsSL $brew_url)"
-
-	test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-	test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 	
 	# Add Path
-  # export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
-  # export PATH="$PATH:$BREW_HOME"
+  export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
+  export PATH="$PATH:$BREW_HOME"
 
   if [ -f "$HOME/.bashrc" ]; then
       (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.bashrc"
