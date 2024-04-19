@@ -45,6 +45,9 @@ if ! command_exists brew; then
 	export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
 	export PATH="$PATH:$BREW_HOME"
 
+	(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.zshrc
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 	# Add to .zshrc
 	echo 'export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"' >> ~/.zshrc
 	echo 'export PATH="$PATH:$BREW_HOME"' >> ~/.zshrc
