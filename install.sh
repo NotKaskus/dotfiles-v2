@@ -132,7 +132,7 @@ function pre_setup_tasks () {
       echo -e "${YELLOW_B}Core dependency ${dep} not found. Running pre-install script...${RESET}"
       bash <(curl -s https://raw.githubusercontent.com/NotKaskus/dotfiles-v2/main/scripts/installation/pre-install.sh)
       break
-    elif [ $dep == 'brew' ] && [ ! -d "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+    elif [ $dep == 'brew' ] && [ ! -d "/home/linuxbrew/.linuxbrew/bin" ]; then
       echo -e "${YELLOW_B}Core dependency ${dep} not found. Running pre-install script...${RESET}"
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
@@ -260,7 +260,7 @@ function install_packages () {
   if [ -f "/etc/debian_version" ]; then
 		# Install packages usig homebrew
 		# Update / Install the Homebrew packages in ~/.Brewfile
-		if [ -d "/home/linuxbrew/.linuxbrew/bin/brew" ] && [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
+		if [ -d "/home/linuxbrew/.linuxbrew/bin" ] && [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
 			echo -e "\n${PURPLE}Updating homebrew and packages...${RESET}"
 			/home/linuxbrew/.linuxbrew/bin/brew update # Update Brew to latest version
 			/home/linuxbrew/.linuxbrew/bin/brew upgrade # Upgrade all installed casks
