@@ -133,7 +133,7 @@ function pre_setup_tasks () {
       bash <(curl -s https://raw.githubusercontent.com/NotKaskus/dotfiles-v2/main/scripts/installation/pre-install.sh)
       break
     elif [ $dep == 'brew' ] && [ ! -d "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-      echo -e "${RED}Homebrew not found. Installing Homebrew...${RESET}"
+      echo -e "${YELLOW_B}Core dependency ${dep} not found. Running pre-install script...${RESET}"
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
       
