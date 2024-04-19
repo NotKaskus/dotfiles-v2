@@ -262,13 +262,12 @@ function install_packages () {
   if [ -f "/etc/debian_version" ]; then
 		# Install packages usig homebrew
 		# Update / Install the Homebrew packages in ~/.Brewfile
-		if command_exists brew && [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
+		if [ -d "/home/linuxbrew/.linuxbrew/bin/brew" ] && [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
 			echo -e "\n${PURPLE}Updating homebrew and packages...${RESET}"
-			brew update # Update Brew to latest version
-			brew upgrade # Upgrade all installed casks
-			brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
-			brew cleanup # Remove stale lock files and outdated downloads
-			killall Finder # Restart finder (required for some apps)
+			/home/linuxbrew/.linuxbrew/bin/brew update # Update Brew to latest version
+			/home/linuxbrew/.linuxbrew/bin/brew upgrade # Upgrade all installed casks
+			/home/linuxbrew/.linuxbrew/bin/brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
+			/home/linuxbrew/.linuxbrew/bin/brew cleanup # Remove stale lock files and outdated downloads
 		else
 			echo -e "${PURPLE}Skipping Homebrew installation as requirements not met${RESET}"
 		fi
