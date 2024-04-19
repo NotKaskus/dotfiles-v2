@@ -1,0 +1,41 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~', '${XDG_CONFIG_HOME}']
+
+- shell:
+  - description: Set XDG environmental variables
+    command: source ./config/zsh/.zshenv
+
+# Symlink locations for files / directories
+- link:
+
+    # Essential configs (ZSH, Vim, Tmux)
+    ~/.zshenv: { path: config/zsh/.zshenv, force: true }
+    ${XDG_CONFIG_HOME}/zsh: config/zsh
+    ${XDG_CONFIG_HOME}/vim: config/vim
+    ${XDG_CONFIG_HOME}/nvim: config/nvim
+    ${XDG_CONFIG_HOME}/tmux: config/tmux
+    ${XDG_CONFIG_HOME}/fish: config/fish
+
+    ${XDG_DATA_HOME}/tmux/tpm: lib/tpm
+    ${XDG_DATA_HOME}/tmux/plugins/tpm: lib/tpm
+    
+    # Utility config files
+    ${XDG_CONFIG_HOME}/.bashrc: config/general/.bashrc
+    ${XDG_CONFIG_HOME}/git/.gitconfig: config/general/.gitconfig
+    ${XDG_CONFIG_HOME}/.gitignore_global: config/general/.gitignore_global
+    ${XDG_CONFIG_HOME}/wget/.wgetrc: config/general/.wgetrc
+
+    # Bash utils
+    ${XDG_CONFIG_HOME}/utils: utils
+
+    ~/.Brewfile: scripts/installs/Brewfile
+
+# If not already present, create home directories
+- create:
+    - ~/Downloads
+    - ~/Documents
+    - ~/Applications
