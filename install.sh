@@ -196,7 +196,7 @@ function setup_dot_files () {
   else # Dotfiles already downloaded, just fetch latest changes
     echo -e "${PURPLE}Pulling changes from ${REPO_NAME} into ${DOTFILES_DIR}${RESET}"
     cd "${DOTFILES_DIR}" && \
-    git pull origin master && \
+    git pull origin main && \
     echo -e "${PURPLE}Updating submodules${RESET}" && \
     git submodule update --recursive --remote --init
   fi
