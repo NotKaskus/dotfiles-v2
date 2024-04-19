@@ -42,21 +42,21 @@ if ! command_exists brew; then
 	/bin/bash -c "$(curl -fsSL $brew_url)"
 	
 	# Add Path
-	export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
-	export PATH="$PATH:$BREW_HOME"
+  export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
+  export PATH="$PATH:$BREW_HOME"
 
-	(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.bashrc
-	(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.zshrc
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  if [ -f "$HOME/.bashrc" ]; then
+      (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.bashrc"
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
 
-	# Add to .zshrc
-	echo 'export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"' >> ~/.zshrc
-	echo 'export PATH="$PATH:$BREW_HOME"' >> ~/.zshrc
-
-	# Reload shell without killing the session
-	source ~/.bashrc
+  if [ -f "$HOME/.zshrc" ]; then
+      (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.zshrc"
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
 else
-	echo "${GREEN}Homebrew already installed, skipping...${RESET}"
+	echo "${GREEN}Homebrew already installed, loading environment...${RESET}"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 # Check if git is installed
