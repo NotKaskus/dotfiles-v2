@@ -122,7 +122,6 @@ function pre_setup_tasks () {
 
 	core_deps=(
 		'git'
-		'nvm'
 		'zsh'
 		'brew'
 	)
