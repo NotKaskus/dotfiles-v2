@@ -52,6 +52,9 @@ if ! command_exists brew; then
 	# Add to .zshrc
 	echo 'export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"' >> ~/.zshrc
 	echo 'export PATH="$PATH:$BREW_HOME"' >> ~/.zshrc
+
+	# Reload shell without killing the session
+	source ~/.bashrc
 else
 	echo "${GREEN}Homebrew already installed, skipping...${RESET}"
 fi

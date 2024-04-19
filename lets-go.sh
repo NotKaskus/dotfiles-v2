@@ -21,9 +21,6 @@ if [[ ! -d "$DOTFILES_DIR" ]]; then
   git clone --recursive ${DOTFILES_REPO} ${DOTFILES_DIR}
 fi
 
-# Reload shell without killing the session
-source ~/.bashrc
-
 # Execute setup or update script
 cd "${DOTFILES_DIR}" && \
 chmod +x ./install.sh && \
