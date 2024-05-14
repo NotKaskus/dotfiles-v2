@@ -57,7 +57,28 @@ make_banner () {
 make_intro () {
   C2="\033[0;35m"
   C3="\x1b[2m"
-  echo -e "${CYAN_B}The setup script will do the following:${RESET}\n"
+  echo -e "${CYAN_B}The setup script will do the following:${RESET}\n"\
+  "${C2}(1) Pre-Setup Tasls\n"\
+  "  ${C3}- Check that all requirements are met, and system is compatible\n"\
+  "  ${C3}- Sets environmental variables from params, or uses sensible defaults\n"\
+  "  ${C3}- Output welcome message and summary of changes\n"\
+  "${C2}(2) Setup Dotfiles\n"\
+  "  ${C3}- Clone or update dotfiles from git\n"\
+  "  ${C3}- Symlinks dotfiles to correct locations\n"\
+  "${C2}(3) Install packages\n"\
+  "  ${C3}- On Debian Linux, updates and installs packages via apt get\n"\
+  "  ${C3}- Install additional packages that is not available via apt get command using brew\n"\
+  "  ${C3}- Checks that OS is up-to-date and critical patches are installed\n"\
+  "${C2}(4) Configure system\n"\
+  "  ${C3}- Setup Vim, and install / update Vim plugins via Plug\n"\
+  "  ${C3}- Setup Tmux, and install / update Tmux plugins via TPM\n"\
+  "  ${C3}- Setup ZSH, and install / update ZSH plugins via Antigen\n"\
+  "${C2}(5) Finishing Up\n"\
+  "  ${C3}- Refresh current terminal session\n"\
+  "  ${C3}- Print summary of applied changes and time taken\n"\
+  "  ${C3}- Exit with appropriate status code\n\n"\
+  "${PURPLE}You will be prompted at each stage, before any changes are made.${RESET}\n"\
+  "${PURPLE}For more info, see GitHub: \033[4;35mhttps://github.com/${REPO_NAME}${RESET}"
 }
 
 # Cleanup tasks, run when the script exits
