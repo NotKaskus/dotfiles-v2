@@ -9,7 +9,7 @@ START_TIME=`date +%s` # Start timer
 SRC_DIR=$(dirname ${0})
 
 # Dotfiles Source Repo and Destination Directory
-REPO_NAME="${REPO_NAME:-NotKaskus/dotfiles-v2}"
+REPO_NAME="${REPO_NAME:-NotKaskus/dotfiles}"
 DOTFILES_DIR="${DOTFILES_DIR:-${SRC_DIR:-$HOME/.dotfiles}}"
 DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/${REPO_NAME}.git}"
 
@@ -154,7 +154,7 @@ function pre_setup_tasks () {
   for dep in "${core_deps[@]}"; do
     if ! command_exists $dep && [ $dep != 'brew' ]; then
       echo -e "${YELLOW_B}Core dependency ${dep} not found. Running pre-install script...${RESET}"
-      bash <(curl -s https://raw.githubusercontent.com/NotKaskus/dotfiles-v2/main/scripts/installation/pre-install.sh)
+      bash <(curl -s https://raw.githubusercontent.com/NotKaskus/dotfiles/main/scripts/installation/pre-install.sh)
       break
     elif [ $dep == 'brew' ] && [ ! -d "/home/linuxbrew/.linuxbrew/bin" ]; then
       echo -e "${YELLOW_B}Core dependency ${dep} not found. Running pre-install script...${RESET}"

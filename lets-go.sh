@@ -2,7 +2,7 @@
 
 # If not already set, specify dotfiles destination directory and source repo
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/Documents/config/dotfiles}"
-DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/NotKaskus/dotfiles-v2.git}"
+DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/NotKaskus/dotfiles.git}"
 
 # Print starting message
 echo -e "\033[1;35m""NotKaskus/Dotfiles Installation Script 🧰
@@ -13,7 +13,7 @@ Be sure you've read and understood the what will be applied.\033[0m\n"
 
 # Run pre-installation script
 echo -e "\033[1;35mRunning pre-installation script...\033[0m"
-bash <(curl -s https://raw.githubusercontent.com/NotKaskus/dotfiles-v2/main/scripts/installation/pre-install.sh)
+bash <(curl -s https://raw.githubusercontent.com/NotKaskus/dotfiles/main/scripts/installation/pre-install.sh)
 
 # If dotfiles not yet present then clone
 if [[ ! -d "$DOTFILES_DIR" ]]; then
