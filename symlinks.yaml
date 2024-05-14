@@ -32,8 +32,6 @@
     # Bash utils
     ${XDG_CONFIG_HOME}/utils: utils
 
-    ~/.Brewfile: scripts/installs/Brewfile
-
 # If not already present, create home directories
 - create:
     - ~/Downloads
