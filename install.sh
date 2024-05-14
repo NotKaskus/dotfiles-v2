@@ -87,13 +87,16 @@ terminate () {
 # Checks if command / package (in $1) exists and then shows
 # either shows a warning or error, depending if package required ($2)
 system_verify () {
-  if ! command_exists $1; then
+  if ! command_exists $1 && [ $1 != "brew" ]; then
     if $2; then
       echo -e "🚫 ${RED_B}Error:${PLAIN_B} $1 is not installed${RESET}"
       terminate
     else
       echo -e "⚠️  ${YELLOW_B}Warning:${PLAIN_B} $1 is not installed${RESET}"
     fi
+  elif [ $dep == "brew" ] && [ ! -d "/home/linuxbrew/.linuxbrew/bin" ]; then
+    echo -e "🚫 ${RED_B}Error:${PLAIN_B} $1 is not installed${RESET}"
+    terminate
   fi
 }
 
